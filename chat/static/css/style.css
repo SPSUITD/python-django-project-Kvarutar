@@ -1,0 +1,58 @@
+body{
+    padding: 0;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.container{
+    max-width: 1140px;
+    margin: 0 auto;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    background-color: #FFD1DC;
+}
+.header__link{
+    text-decoration: none;
+    color: black;
+    transition: 0.3s all;
+}
+.header__link:hover{
+    color: #00BFFF;
+}
+.logo{
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+}
+.unlogged{
+    padding-top: 50px;
+}
+.unlogged h1{
+    text-align: center;
+}
+.rooms{
+    padding-top: 50px;
+}
+.rooms__title{
+    display: block;
+    text-align: center;
+    margin-bottom: 60px;
+}
+.btn_submit{
+    margin: 0 auto;
+    cursor: pointer;
+    display: block;
+    min-width: 300px;
+    padding: 16px 0;
+    border: 1px solid #ffb833;
+    background: white;
+    border-radius: 20px;
+    transition: 0.3s all;
+    margin-bottom: 20px;
+}
+.btn_submit:hover{
+    background-color: #FFA500;
+}

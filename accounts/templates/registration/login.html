@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}Вход{% endblock  %}
+{% block content %}
+<style>
+    form{
+        display: block;
+        padding: 0 20px;
+    }
+    form label{
+        display: none;
+    }
+    form input{
+        outline: none;
+        display: block;
+        margin: 0 auto;
+        border-radius: 20px;
+        border: none;
+        padding: 10px;
+        padding-left: 30px;
+        font-size: 16px;
+    }
+    .form__title{
+        text-align: center;
+    }
+    .form__descr{
+        text-align: center;
+        font-size: 14px;
+    }
+    .login-form{
+        padding: 20px 0;
+        border-radius: 20px;
+        margin: 0 auto;
+        margin-top: 50px;
+        max-width: 500px;
+        background-color: #77DD77;
+    }
+    .btn{
+        cursor: pointer;
+        display: block;
+        min-width: 300px;
+        padding: 16px 0;
+        background-color: #ffb833;
+        transition: 0.3s all;
+    }
+    .btn:hover{
+        background-color: #FFA500;
+    }
+    .login__link{
+        text-decoration: underline;
+        transition: 0.3s all;
+        color: black;
+    }
+    .login__link:hover{
+        color: #00BFFF;
+    }
+    
+</style>
+    <div class="container">
+        
+        {% if form.errors %}
+            <p> Чет не правильно, либо никнейм, либо пароль
+            </p>
+        {% else %}
+        {% endif %}
+        <div class="login-form">
+            <h1 class="form__title">Войти</h1>
+            <form action="{% url 'login' %}" method="POST" class="form__login">
+                {{ form.as_p }}
+                {% csrf_token %} 
+                <input type="hidden" name="next" value="{{next}}" />
+                <p><input type="submit" value="Log-in" class="btn"></p>
+                <p class="form__descr">Если у вас еще нет аккаунта, <a href="{% url "register" %}" class="login__link">зарегестрируйтесь</a></p>
+            </form>
+        </div>
+    </div>
+{% endblock  %}

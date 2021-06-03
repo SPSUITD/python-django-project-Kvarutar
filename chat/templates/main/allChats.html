@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <title>Личный кабинет</title>
+</head>
+<body>
+    <div class="header" id="header">
+        <a href="/" class="logo">Чат</a>
+        <span class="user">
+            {% if request.user.is_authenticated %}
+                Привет {{ request.user.username }},
+                <a href="{% url "logout" %}" class="header__link">Выйти</a>
+            {% else %}
+                <a href="{% url "login" %}" class="header__link">Войти</a>
+            {% endif %}
+        </span>
+    </div>
+    <section class="rooms">
+        <div class="container">
+            {% if request.user.is_authenticated %}
+                <h1 class="rooms__title">Доступные комнаты</h1>
+                {% for chat in chats %}
+                    <form id="post-form" method="POST" action="chat/checkview">
+                        {% csrf_token %}
+                        <input style="visibility: hidden;position: absolute;" type="text" name="room_name" id="room_name" width="100px" value="{{ chat.name }}"/>
+                        <input style="visibility: hidden;position: absolute;" type="text" name="username" id="username" width="100px" value="{{ request.user.username }}"/>
+                        <input type="submit" value="{{ chat.name }}" class="btn_submit">
+                    </form>
+                {% endfor %}
+            {% else %}
+                <section class="unlogged">
+                    <h1>Для того, чтобы воспользоваться<br> нашим удивительным чатом,<br> войдите в систему</h1>
+                </section>
+            {% endif %}
+            {% block content %}
+            {% endblock %}
+        </div>
+    </section>
+</body>
+</html>

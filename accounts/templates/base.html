@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="header" id="header">
+        <a href="/" class="logo">Чат</a>
+        <span class="user">
+            {% if request.user.is_authenticated %}
+                Привет {{ request.user.username }}),
+                <a href="{% url "logout" %}" class="header__link">Выйти</a>
+            {% else %}
+                <a href="{% url "login" %}" class="header__link">Войти</a>
+            {% endif %}
+        </span>
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
